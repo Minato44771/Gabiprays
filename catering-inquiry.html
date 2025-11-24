@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabi Fries Catering Inquiry</title>
+    <link rel="stylesheet" href="gabiprays-style.css">
+    <style>
+        .inquiry-form {
+            max-width: 400px;
+            margin: 60px auto;
+            background: #2d0036;
+            color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .inquiry-form h2 {
+            color: #ff9100;
+            margin-bottom: 24px;
+        }
+        .inquiry-form label {
+            display: block;
+            margin: 18px 0 6px 0;
+            font-weight: bold;
+        }
+        .inquiry-form input, .inquiry-form select {
+            width: 90%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 16px;
+            font-size: 1em;
+        }
+        .inquiry-form button {
+            background: #ff9100;
+            color: #2d0036;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 32px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: background 0.2s;
+        }
+        .inquiry-form button:hover {
+            background: #2d0036;
+            color: #ff9100;
+        }
+    </style>
+</head>
+<body>
+    <form class="inquiry-form">
+        <h2>Catering Inquiry</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <label for="type">Type of Catering:</label>
+        <select id="type" name="type" required>
+            <option value="">Choose here</option>
+            <option value="Birthday Party">Birthday Party</option>
+            <option value="Corporate Event">Corporate Event</option>
+            <option value="School Gathering">School Gathering</option>
+            <option value="Family Reunion">Family Reunion</option>
+            <option value="Other">Other</option>
+        </select>
+        <button type="submit" id="submitBtn" style="position:relative;overflow:hidden;">
+            <span id="btnText">Submit Inquiry</span>
+            <span id="truckAnim" style="display:none;position:absolute;left:-80px;top:50%;transform:translateY(-50%);">
+                <svg width="70" height="35" viewBox="0 0 70 35">
+                    <rect x="3" y="12" width="42" height="18" rx="6" fill="#ff9100" stroke="#2d0036" stroke-width="2"/>
+                    <rect x="47" y="18" width="18" height="12" rx="3" fill="#fff" stroke="#2d0036" stroke-width="2"/>
+                    <circle cx="16" cy="32" r="6" fill="#2d0036" stroke="#ff9100" stroke-width="2"/>
+                    <circle cx="54" cy="32" r="6" fill="#2d0036" stroke="#ff9100" stroke-width="2"/>
+                </svg>
+            </span>
+        </button>
+    </form>
+    <script>
+    const form = document.querySelector('.inquiry-form');
+    const btn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const truckAnim = document.getElementById('truckAnim');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        btnText.style.display = 'none';
+        truckAnim.style.display = 'inline-block';
+        truckAnim.animate([
+            { left: '-80px' },
+            { left: '120px' }
+        ], {
+            duration: 2200,
+            fill: 'forwards',
+            easing: 'cubic-bezier(.68,-0.55,.27,1.55)'
+        });
+        setTimeout(() => {
+            truckAnim.style.display = 'none';
+            btnText.style.display = 'inline';
+            form.reset();
+        }, 2400);
+    });
+    </script>
+</body>
+</html>
